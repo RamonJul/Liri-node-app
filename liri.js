@@ -3,11 +3,9 @@ var task = process.argv[2]
 var search = ``
 
 
-fs.appendFile(`log.txt`,"process.argv.slice[2]",function(err){
-    console.log(err)
 
-})
 if (task === "do-what-it-says") {
+    log(task,null)
     fs.readFile(`random.txt`, `utf8`, function (err, data) {
         if (err) {
             return console.log(err)
@@ -32,9 +30,17 @@ if (task === "do-what-it-says") {
         search = `${search} ${process.argv[i]}`
         }
     }
+    log(task,search)
     commands(task, search)
 }
+function log( task,term){
+    fs.appendFile(`log.txt`,` ${task} ${term} `,function(err){
+        console.log(err)
+    
+    })   
 
+
+}
 function commands(task, search) {
     module.exports = search
     switch (task) {

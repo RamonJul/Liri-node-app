@@ -8,6 +8,7 @@ function events( venue,date){
 
 }
 var artists=require("./liri.js")
+
 request
 .get(`https://rest.bandsintown.com/artists/${artists}/events?app_id=codingbootcamp`,function(response ,err,body){
         if (err){

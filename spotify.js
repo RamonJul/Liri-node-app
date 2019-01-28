@@ -13,6 +13,12 @@ this.preview=song. preview_url
 this.album=song.album.name
 }
 var track=require(`./liri`)
+
+if(track===``){
+  track="The sign"
+  console.log(`pls enter a song`)
+}
+
 spotify
 .search({type:`track`,query: track})
 .then(function(response,err){

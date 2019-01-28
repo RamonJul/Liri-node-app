@@ -1,7 +1,12 @@
 var request=require(`request`)
-var liri=require(`./liri.js`).split(" ")
+var liri_initial=require(`./liri.js`)
 var movieName=""
-console.log(liri)
+if(liri_initial===``){
+    movieName=" Mr.+Nobody"
+    console.log(`pls enter a movie to search`)
+}
+else{
+let liri=liri_initial.split(" ")
 for (var i = 0; i < liri.length; i++) {
 
     if (i > 0 && i < liri.length) {
@@ -12,6 +17,7 @@ for (var i = 0; i < liri.length; i++) {
   
     }
   }
+}
 
 function movie(movie){
     
