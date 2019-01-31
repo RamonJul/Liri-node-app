@@ -1,48 +1,59 @@
-var request=require(`request`)
-var liri_initial=require(`./liri.js`)
-var movieName=""
-if(liri_initial===``){
-    movieName=" Mr.+Nobody"
-    console.log(`pls enter a movie to search`)
-}
-else{
-let liri=liri_initial.split(" ")
-for (var i = 0; i < liri.length; i++) {
+var request = require(`request`)
+var log=require("./log")
+var movieName = ""
 
-    if (i > 0 && i < liri.length) {
-      movieName = `${movieName}+${liri[i]}`;
-    }
-    else {
-      movieName += liri[i];
-  
-    }
-  }
-}
 
-function movie(movie){
-    
-    this.title=movie.Title
-    this.year=movie.Year
-    this.imdb_rating=movie.imdbRating
-    if(movie.Ratings[1]!=undefined){
-        this.rotten_tomato_rating=movie.Ratings[1].Value
-    }
-    this.country=movie.Country
-    this.language=movie.Language
-    this.plot=movie.Plot
-    this.actors=movie.Actors
-}
+var movie_search = {
+    formating: function (search) {
+        if (search.length <= 3) {
+            movieName = "Mr.+Nobody"
+            console.log(`pls enter a movie to search`)
+            log("movie-this","non")
+        } else {
+            for (let i = 3; i < search.length; i++) {
 
-request
-.get(`http://www.omdbapi.com/?t=${movieName}&y=&plot=short&apikey=trilogy`,function(err,body){
-        if (err){
+                if (i > 3 && i < search.length) {
+                    movieName = `${movieName}+${search[i]}`;
+                } else {
+                    movieName += search[i];
 
-            console.log(err)
+                }
+            }
+            log("movie-this", movieName)
         }
-      
-        var movie_data= new movie(JSON.parse(body.body))
-        console.log(movie_data)
-     
+    
+        this.search()
+    },
+    movie_construtor: function (movie) {
+
+        this.title = movie.Title
+        this.year = movie.Year
+        this.imdb_rating = movie.imdbRating
+        if (movie.Ratings[1] != undefined) {
+            this.rotten_tomato_rating = movie.Ratings[1].Value
+        }
+        this.country = movie.Country
+        this.language = movie.Language
+        this.plot = movie.Plot
+        this.actors = movie.Actors
+    },
+    search: function () {
+        request
+            .get(`http://www.omdbapi.com/?t=${movieName}&y=&plot=short&apikey=trilogy`, function (err, body) {
+                if (err) {
+
+                    console.log(err)
+                }
+
+                var movie_data = new movie_search.movie_construtor(JSON.parse(body.body))
+                console.log(movie_data)
 
 
-})
+
+            })
+
+    }
+
+}
+
+module.exports = movie_search
