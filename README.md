@@ -31,8 +31,8 @@ node liri.js task search-term
     this.date=moment(date).format(MM/DD/YY)
 
    }
-  
   ```
+ ![example](images/concert.png)
 + ### spotify-this-song
   + search a song and the app will return an array of songs that match the search 
   
@@ -44,6 +44,7 @@ node liri.js task search-term
     this.album=song.album.name
     }
   ```
+   ![example](images/spotify.png)
 + ### movie-this
   + search a movie and the app will return and the app will retrun a movie obj
   
@@ -61,7 +62,7 @@ node liri.js task search-term
   }
 
   ```
-
+   ![example](images/movie-this.png)
 + ### do-what-it-says
   This command will run take commands from the random.txt. The commands in the text file need to follow the same format as if you where 
   
@@ -72,6 +73,8 @@ node liri.js task search-term
   note. in the log when you see a do-what-it-says null  the entry right next to it should be the exact same entry that 
   
   you should see in you random.txt file
+  
+   ![example](images/dowhatitsays.png)
   
 
   
