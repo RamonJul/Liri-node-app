@@ -69,6 +69,9 @@ node liri.js task search-term
   
   ex. movie-this pacific rim
   
+  note. in the log when you see a do-what-it-says null  the entry right next to it should be the exact same entry that you should see 
+  
+  in you random.txt file
   
 
 
